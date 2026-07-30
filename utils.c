@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:40:18 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/07/29 18:39:58 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/07/30 16:41:13 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_get_valid_posint(char *nptr, int *value)
 	long long	n;
 	// 에러 처리하고 void로 바꾸기
 	n = 0;
-	while (*nptr == ' ')
+	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
 	{
@@ -36,15 +36,17 @@ int	ft_get_valid_posint(char *nptr, int *value)
 	}
 	while (*nptr)
 	{
-		if (!(*nptr >= '1' && *nptr <= '9'))
+		if (!(*nptr >= '0' && *nptr <= '9'))
+			return (-1);
+		if (n > (MAX_INT - (*nptr - '0')) / 10)
 			return (-1);
 		n = n * 10 + (*nptr - '0');
 		nptr++;
 	}
-	if (n > 2147483647 || n < 0)
+	if (n <= 0)
 		return (-1);
-	*value = n;
-	return ((int)n);
+	*value = (int)n;
+	return (0);
 }
 
 int	parse_arguments(int ac, char **av, t_info *info)
