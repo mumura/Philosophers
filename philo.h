@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 20:02:53 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/10/30 21:16:08 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # ifndef MAX_LLONG
 #  define MAX_LLONG 9223372036854775807
+# endif
+# ifndef MAX_SIZE
+#  define MAX_SIZE 18446744073709551615
 # endif
 # include <pthread.h>
 
