@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 21:29:32 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/10/30 22:06:00 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void	init_data(t_data *data)
 	ft_bzero(data, sizeof(*data));
 }
 
-pthread_mutex_t	*init_pthread(long long size)
+pthread_mutex_t	*init_forks(long long size)
 {
 	pthread_mutex_t	*ph;
 	size_t			max;
+	int				i;
 
 	max = MAX_SIZE / sizeof(pthread_mutex_t);
 	if ((size <= 0) || ((unsigned long long)size > max))
@@ -28,6 +29,14 @@ pthread_mutex_t	*init_pthread(long long size)
 	ph = malloc(sizeof(*ph) * size);
 	if (!ph)
 		return (NULL);
-	pthread_mutex_init(ph, NULL);
+	i = -1;
+	while (++i < size)
+	{
+		if (!pthread_mutex_init(&ph[i], NULL))
+		{
+			free_forks(ph[i]);
+			return (1);
+		}
+	}
 	return (ph);
 }

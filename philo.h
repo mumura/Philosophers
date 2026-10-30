@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 21:16:08 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/10/30 21:40:59 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define MAX_LLONG 9223372036854775807
 # endif
 # ifndef MAX_SIZE
-#  define MAX_SIZE 18446744073709551615
+#  define MAX_SIZE 18446744073709551615ULL
 # endif
 # include <pthread.h>
 
@@ -31,7 +31,7 @@ typedef struct s_data
 	long long		start_time;
 	long long		stop;// 1 실행중, 0 멈춤
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	pirnt_mutex;
+	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	state_mutex;
 }	t_data;
 
