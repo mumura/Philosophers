@@ -1,0 +1,17 @@
+{
+    "codam-norminette-3.command": "/usr/local/bin/norminette",
+    "codam-norminette-3.regex": "\\.[ch]$",
+    "codam-norminette-3.displayErrorName": true,
+    "editor.quickSuggestions": {
+		"comments": "off",
+		"strings": "off",
+		"other": "off"
+	},
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.inlineSuggest.enabled": false,
+    "editor.tabCompletion": "off",
+    "editor.acceptSuggestionOnEnter": "off",
+    "github.copilot.enable": {
+        "*": false
+    }
+}

@@ -5,19 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 16:10:43 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/07/29 17:07:28 by jinsekan         ###   ########.fr       */
+/*   Created: 2026/10/29 15:22:58 by jinsekan          #+#    #+#             */
+/*   Updated: 2026/10/30 20:15:22 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char *av)
+int	main(int ac, char **av)
 {
-	t_info	*info;
+	t_data	*data;
 
-	if (ac < 5 || ac > 6)
-		reutnr (0);
+	if (ac != 5 && ac != 6)
+		return (1);
 	init_info(info);
 	parse_arguments(ac, av, info);
+	return (0);
 }

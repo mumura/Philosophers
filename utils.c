@@ -6,25 +6,25 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:40:18 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/07/30 16:41:13 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/10/30 20:10:29 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_sub_arr_info(int **values, t_info *info)
+static void	init_sub_arr_info(t_data *data, long long *values)
 {
-	values[0] = &info->philos;
-	values[1] = &info->to_die;
-	values[2] = &info->to_eat;
-	values[3] = &info->to_sleep;
-	values[4] = &info->must_eat;
+	data->philo_cnt = values[0];
+	data->time_to_die = values[1];
+	data->time_to_eat = values[2];
+	data->time_to_sleep = values[3];
+	data->must_eat = values[4];
 }
 
-int	ft_get_valid_posint(char *nptr, int *value)
+static int	ft_get_valid_posint(char *nptr, long long *values)
 {
 	long long	n;
-	// 에러 처리하고 void로 바꾸기
+
 	n = 0;
 	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
 		nptr++;
@@ -38,32 +38,32 @@ int	ft_get_valid_posint(char *nptr, int *value)
 	{
 		if (!(*nptr >= '0' && *nptr <= '9'))
 			return (-1);
-		if (n > (MAX_INT - (*nptr - '0')) / 10)
+		if (n > (MAX_LLONG - (*nptr - '0')) / 10)
 			return (-1);
 		n = n * 10 + (*nptr - '0');
 		nptr++;
 	}
 	if (n <= 0)
 		return (-1);
-	*value = (int)n;
+	*values = n;
 	return (0);
 }
 
-int	parse_arguments(int ac, char **av, t_info *info)
+int	parse_arguments(int ac, char **av, t_data *data)
 {
 	int		i;
-	int		*values[5];
-
+	long long vaules[5];
 	/* 인자 : 철학자 수, 사망까지 남은 시간, 식시까지 남은 시간, 수면까지 남은시간 (선택) 각 철학자가 식사해야하는 횟수*/
-	if (ac == 6)
-		info->has_must_eat = 'y';
-	init_sub_arr_info(values, info);
+	if (!!av || !data)
+		return (0);
 	i = 1;
-	while (i <= ac - 1)
+	values[4] = 0;
+	while (i < ac)
 	{
-		if (ft_get_valid_posint(av[i], values[i - 1]) == -1)
+		if (!ft_get_valid_posint(av[i], &values[i - 1])
 			return (0);
 		i++;
 	}
+	input_data(data, values);
 	return (1);
 }
