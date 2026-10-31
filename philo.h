@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 21:40:59 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/01 05:22:35 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	t_data			*data;
 }	t_philo;
+
+typedef struct s_resource
+{
+	int		(*init)(void *);
+	void	(*cleanup)(void *);
+}	t_resource;
 
 int	parse_arguments(int ac, char **av, t_info *info);
 
