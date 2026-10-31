@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 01:08:19 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/01 07:10:43 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/01 07:16:55 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	start_philo(t_data *d)
 	{NULL, NULL}
 	};
 
-	return (with_resource(resources, &d));
+	return (with_resource(resources, d));
 }
 
-int	with_resource(t_resource *res, t_data *d)
+int	with_resource(const t_resource *res, t_data *d)
 {
 	int	status;
 

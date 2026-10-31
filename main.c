@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/29 15:22:58 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 21:34:27 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/01 07:36:18 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
+	t_data	data;
 
 	if (ac != 5 && ac != 6)
 		return (1);
-	init_info(data);
-	parse_arguments(ac, av, data);
-	return (0);
+	init_data(&data);
+	if (parse_arguments(ac, av, &data) != 0)
+		return (1);
+	return (start_philo(&data));
 }
