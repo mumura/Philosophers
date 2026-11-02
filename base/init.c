@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:41:49 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 14:34:10 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	init_data(t_data *d)
 {
 	ft_bzero(d, sizeof(*d));
 	d->must_eat = -1;
+	d->start_time = -1;
 	d->stop = 1;
-	d->forks = NULL;
-	d->philo = NULL;
 }
 
 int	init_forks(t_data *d)

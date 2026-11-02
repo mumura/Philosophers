@@ -6,9 +6,13 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 16:13:32 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 21:35:37 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:50:45 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	run_simulation(t_data *d)
+{
+	return (0);
+}

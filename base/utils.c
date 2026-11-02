@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:40:18 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:31:38 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:50:06 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	parse_arguments(int ac, char **av, t_data *data)
 {
 	int			i;
 	long long	values[5];
-	/* 인자 : 철학자 수, 사망까지 남은 시간, 식시까지 남은 시간, 수면까지 남은시간 (선택) 각 철학자가 식사해야하는 횟수*/
+
 	if (!av || !data)
 		return (1);
 	i = 1;
