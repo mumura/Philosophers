@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:40:18 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/10/30 21:41:51 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:31:38 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ static int	input_data(t_data *d, long long *values)
 	d->time_to_eat = values[2];
 	d->time_to_sleep = values[3];
 	d->must_eat = values[4];
-	d->forks = init_forks(values[0]);
-	if (d->forks)
-		return (1);
 	return (0);
 }
 
@@ -59,16 +56,14 @@ int	parse_arguments(int ac, char **av, t_data *data)
 	long long	values[5];
 	/* 인자 : 철학자 수, 사망까지 남은 시간, 식시까지 남은 시간, 수면까지 남은시간 (선택) 각 철학자가 식사해야하는 횟수*/
 	if (!av || !data)
-		return (0);
+		return (1);
 	i = 1;
-	values[4] = 0;
+	values[4] = -1;
 	while (i < ac)
 	{
 		if (ft_get_valid_posint(av[i], &values[i - 1]) == -1)
-			return (0);
+			return (1);
 		i++;
 	}
-	if (input_data(data, values))
-		return (1);
-	return (0);
+	return (input_data(data, values));
 }

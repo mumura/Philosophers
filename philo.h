@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 12:14:17 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:32:17 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 #  define MAX_SIZE 18446744073709551615ULL
 # endif
 # include <pthread.h>
+
+typedef struct s_philo
+{
+	long long		id;
+	pthread_t		thread;
+	long long		last_meal;
+	long long		meal_cnt;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	t_data			*data;
+}	t_philo;
 
 typedef struct s_data
 {
@@ -36,21 +47,10 @@ typedef struct s_data
 	pthread_mutex_t	state_mutex;
 }	t_data;
 
-typedef struct s_philo
-{
-	long long		id;
-	pthread_t		thread;
-	long long		last_meal;
-	long long		meal_cnt;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	t_data			*data;
-}	t_philo;
-
 typedef struct s_resource
 {
-	int		(*init)(void *);
-	void	(*cleanup)(void *);
+	int		(*init)(t_data *);
+	void	(*cleanup)(t_data *);
 }	t_resource;
 
 int	parse_arguments(int ac, char **av, t_info *info);
