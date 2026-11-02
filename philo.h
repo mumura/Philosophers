@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/01 05:22:35 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 11:48:39 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
 	long long		time_to_sleep;
 	long long		start_time;
 	long long		stop;// 1 실행중, 0 멈춤
+	t_philo			*philo;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	state_mutex;
