@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:24:33 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:37:05 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_forks(t_data *d)
 {
 	pthread_mutex_t	**ph;
 	size_t			max;
-	int				i;
+	long long		i;
 	long long		size;
 
 	size = d->philo_cnt;
@@ -42,7 +42,7 @@ int	init_forks(t_data *d)
 		if (pthread_mutex_init(&(*ph)[i], NULL) != 0)
 		{
 			free_forks(ph, i);
-			return (NULL);
+			return (1);
 		}
 	}
 	return (0);
@@ -84,7 +84,7 @@ int	init_philos(t_data *d)
 		(*ph)[i].id = i + 1;
 		(*ph)[i].data = d;
 		(*ph)[i].left_fork = &d->forks[i];
-		(*ph)[i].pright_forks = &d->forks[(i + 1) % size];
+		(*ph)[i].print_forks = &d->forks[(i + 1) % size];
 	}
 	return (0);
 }

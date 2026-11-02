@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:32:17 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:38:25 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # endif
 # include <pthread.h>
 
-typedef struct s_philo
+typedef struct s_data	t_data;
+typedef struct s_philo	t_philo;
+
+struct s_philo
 {
 	long long		id;
 	pthread_t		thread;
@@ -30,9 +33,9 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_data			*data;
-}	t_philo;
+}; //t_philo
 
-typedef struct s_data
+struct s_data
 {
 	long long		philo_cnt;
 	long long		must_eat;
@@ -45,7 +48,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	state_mutex;
-}	t_data;
+}; //	t_data;
 
 typedef struct s_resource
 {
