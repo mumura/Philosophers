@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:37:05 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:40:23 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int	init_philos(t_data *d)
 	t_philo		**ph;
 
 	size = d->philo_cnt;
-	max = SIZE_MAX / sizeof(t_philo);
+	max = MAX_SIZE / sizeof(t_philo);
 	if (size <= 0 || (unsigned long long)size > max)
 		return (1);
 	ph = &d->philo;
 	*ph = malloc(sizeof(**ph) * size);
 	if (!*ph)
-		reutrn (1);
+		return (1);
 	i = -1;
 	while (++i < size)
 	{
@@ -84,7 +84,7 @@ int	init_philos(t_data *d)
 		(*ph)[i].id = i + 1;
 		(*ph)[i].data = d;
 		(*ph)[i].left_fork = &d->forks[i];
-		(*ph)[i].print_forks = &d->forks[(i + 1) % size];
+		(*ph)[i].right_forks = &d->forks[(i + 1) % size];
 	}
 	return (0);
 }

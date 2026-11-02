@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:38:25 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:40:47 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #  define MAX_SIZE 18446744073709551615ULL
 # endif
 # include <pthread.h>
+# include <stdlib.h>
+# include <stdint.h>
 
 typedef struct s_data	t_data;
 typedef struct s_philo	t_philo;
