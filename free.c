@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 21:45:06 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 11:38:59 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 12:21:28 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ void	free_forks(pthread_mutex_t **ph, long long len)
 		--len;
 		pthread_mutex_destroy(&(*ph)[len]);
 	}
-	free(ph);
+	free(*ph);
 	*ph = NULL;
+}
+
+void	clean_forks(t_data *d)
+{
+	free_forks(d->forks, philo_cnt);
 }
 
 void	destroy_print_mutex(t_data *d)
@@ -35,8 +40,8 @@ void	destroy_state_mutex(t_data *d)
 	pthread_mutex_destroy(&d->state_mutex);
 }
 
-void	free_philos(t_data *d)
+void	free_philo(t_data *d)
 {
-	free(d->philos);
-	d->philos = NULL;
+	free(d->philo);
+	d->philo = NULL;
 }

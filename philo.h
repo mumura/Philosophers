@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 11:48:39 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 12:14:17 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	int				id;
+	long long		id;
 	pthread_t		thread;
-	long			last_meal;
-	int				meal_cnt;
+	long long		last_meal;
+	long long		meal_cnt;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_data			*data;

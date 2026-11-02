@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 12:04:53 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/02 12:15:34 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_data(t_data *d)
 	d->philos = NULL;
 }
 
-int	*init_forks(t_data *d)
+int	init_forks(t_data *d)
 {
 	pthread_mutex_t	**ph;
 	size_t			max;
@@ -29,7 +29,7 @@ int	*init_forks(t_data *d)
 	long long		size;
 
 	size = d->philo_cnt;
-	max = MAX_SIZE / sizeof(&d->forks);
+	max = MAX_SIZE / sizeof(pthread_mutex_t);
 	if ((size <= 0) || ((unsigned long long)size > max))
 		return (1);
 	ph = &d->forks;
@@ -39,9 +39,9 @@ int	*init_forks(t_data *d)
 	i = -1;
 	while (++i < size)
 	{
-		if (pthread_mutex_init(&ph[i], NULL) != 0)
+		if (pthread_mutex_init(&(*ph)[i], NULL) != 0)
 		{
-			free_forks(&ph, i);
+			free_forks(ph, i);
 			return (NULL);
 		}
 	}
@@ -70,11 +70,11 @@ int	init_philos(t_data *d)
 	t_philo		**ph;
 
 	size = d->philo_cnt;
-	max = SIZE_MAX / sizeof(*d->philo);
+	max = SIZE_MAX / sizeof(t_philos);
 	if (size <= 0 || (unsigned long long)size > max)
 		return (1);
 	ph = &d->philo;
-	*ph = malloc(sizeof(**ph) * size);
+	*ph = malloc(sizeof(t_philo) * size);
 	if (!*ph)
 		reutrn (1);
 	i = -1;
