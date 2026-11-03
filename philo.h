@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 17:06:46 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/03 15:50:49 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ struct s_data
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
-
 	long long		start_time;
 	long long		stop;// 1 실행중, 0 멈춤
 	t_philo			*philo;
@@ -51,8 +50,12 @@ struct s_philo
 	long long		meal_cnt;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	t_data			*data;
+	pthread_mutex_t	*print_mutex;
+	pthread_mutex_t	*state_mutex;
+	// t_data			*data;
 }; //t_philo
+
+
 
 typedef struct s_resource
 {
