@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 14:15:08 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:51:42 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:58:49 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	cleanup_created(t_data *d, long long cnt)
 	pthread_mutex_lock(&d->state.mx);
 	d->state.stop = 0;
 	pthread_mutex_unlock(&d->state.mx);
-	if (join_philo(*d, cnt) != 0)
+	if (join_philo(d, cnt) != 0)
 		return (2);
 	return (1);
 }

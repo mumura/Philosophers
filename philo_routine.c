@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 16:07:13 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:52:17 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:59:10 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	wait_start(t_state *s)
 		start = s->start_time;
 		running = s->stop;
 		pthread_mutex_unlock(&s->mx);
-		if (runnig == 0)
+		if (running == 0)
 			return (1);
 		if (start != -1)
 			return (0);
