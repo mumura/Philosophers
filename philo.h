@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/03 15:50:49 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 13:57:06 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,48 @@
 # include <stdlib.h>
 # include <stdint.h>
 
-typedef struct s_data	t_data;
+typedef struct s_share	t_share;
+typedef struct s_state	t_state;
 typedef struct s_philo	t_philo;
+typedef struct s_data	t_data;
 
-struct s_data
+struct	s_share
 {
 	long long		philo_cnt;
 	long long		must_eat;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
+}; //	t_share;
+
+struct	s_state
+{
 	long long		start_time;
 	long long		stop;// 1 실행중, 0 멈춤
-	t_philo			*philo;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	state_mutex;
-}; //	t_data;
+	pthread_mutex_t	mx;
+}
 
 struct s_philo
 {
 	long long		id;
 	pthread_t		thread;
-	long long		released;
 	long long		last_meal;
 	long long		meal_cnt;
+	long long		released;
+	pthread_mutex_t	meal;
+	const t_share	*share;
+	t_state			*state;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*print_mutex;
-	pthread_mutex_t	*state_mutex;
-	// t_data			*data;
 }; //t_philo
 
-
+struct s_data
+{
+	t_share			share;
+	t_state			state;
+	t_philo			*philo;
+	pthread_mutex_t	*forks;
+}; //	t_data;
 
 typedef struct s_resource
 {

@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 14:34:10 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 13:59:44 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	init_data(t_data *d)
 {
 	ft_bzero(d, sizeof(*d));
-	d->must_eat = -1;
-	d->start_time = -1;
-	d->stop = 1;
+	d->share.must_eat = -1;
+	d->state.start_time = -1;
+	d->state.stop = 1;
 }
 
 int	init_forks(t_data *d)
@@ -27,7 +27,7 @@ int	init_forks(t_data *d)
 	long long		i;
 	long long		size;
 
-	size = d->philo_cnt;
+	size = d->share.philo_cnt;
 	max = MAX_SIZE / sizeof(pthread_mutex_t);
 	if ((size <= 0) || ((unsigned long long)size > max))
 		return (1);
@@ -47,16 +47,25 @@ int	init_forks(t_data *d)
 	return (0);
 }
 
-int	init_print_mutex(t_data *d)
+int	init_meal(t_data *d)
 {
-	if (pthread_mutex_init(&d->print_mutex, NULL) != 0)
-		return (1);
+	long long	i;
+
+	i = -1;
+	while (++i < d->share.philo_cht)
+	{
+		if (pthread_mutex_init(&d->philo[i].meal, NULL) != 0)
+		{
+			free_meal(d->philo, i);
+			return (1);
+		}
+	}
 	return (0);
 }
 
-int	init_state_mutex(t_data *d)
+int	init_state(t_data *d)
 {
-	if (pthread_mutex_init(&d->state_mutex, NULL) != 0)
+	if (pthread_mutex_init(&d->state.mx, NULL) != 0)
 		return (1);
 	return (0);
 }
@@ -68,8 +77,8 @@ int	init_philos(t_data *d)
 	size_t		max;
 	t_philo		**ph;
 
-	size = d->philo_cnt;
-	max = MAX_SIZE / sizeof(t_philo);
+	size = d->share.philo_cnt;
+	max = MAX_SIZE / sizeof(**ph);
 	if (size <= 0 || (unsigned long long)size > max)
 		return (1);
 	ph = &d->philo;
@@ -81,7 +90,8 @@ int	init_philos(t_data *d)
 	{
 		ft_bzero(&(*ph)[i], sizeof(**ph));
 		(*ph)[i].id = i + 1;
-		(*ph)[i].data = d;
+		(*ph)[i].share = &d->share;
+		(*ph)[i].state = &d->state;
 		(*ph)[i].left_fork = &d->forks[i];
 		(*ph)[i].right_fork = &d->forks[(i + 1) % size];
 	}

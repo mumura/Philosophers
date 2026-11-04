@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 01:08:19 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 12:16:59 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 14:00:32 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	start_philo(t_data *d)
 {
 	static const t_resource	resources[] = {
 	{init_forks, clean_forks},
-	{init_print_mutex, destroy_print_mutex},
-	{init_state_mutex, destroy_state_mutex},
-	{init_philos, free_philo},
+	{init_state, clean_state},
+	{init_philos, clean_philo},
+	{init_meal, clean_meal},
 	{NULL, NULL}
 	};
 

@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:40:18 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/02 13:50:06 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:17:09 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	input_data(t_data *d, long long *values)
 {
-	d->philo_cnt = values[0];
-	d->time_to_die = values[1];
-	d->time_to_eat = values[2];
-	d->time_to_sleep = values[3];
-	d->must_eat = values[4];
+	d->share.philo_cnt = values[0];
+	d->share.time_to_die = values[1];
+	d->share.time_to_eat = values[2];
+	d->share.time_to_sleep = values[3];
+	d->share.must_eat = values[4];
 	return (0);
 }
 
