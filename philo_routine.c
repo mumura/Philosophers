@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 16:07:13 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:38:19 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:52:17 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static int	wait_start(t_state *s)
 	{
 		pthread_mutex_lock(&s->mx);
 		start = s->start_time;
-		runnig = s->stop;
+		running = s->stop;
 		pthread_mutex_unlock(&s->mx);
 		if (runnig == 0)
 			return (1);
 		if (start != -1)
 			return (0);
-		unsleep(100);
+		usleep(100);
 	}
 }
 int	eat_philo(t_data *d)

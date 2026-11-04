@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 13:57:06 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:47:19 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ struct	s_state
 	long long		start_time;
 	long long		stop;// 1 실행중, 0 멈춤
 	pthread_mutex_t	mx;
-}
+}; // t_state
 
 struct s_philo
 {
@@ -72,6 +72,6 @@ typedef struct s_resource
 	void	(*cleanup)(t_data *);
 }	t_resource;
 
-int	parse_arguments(int ac, char **av, t_info *info);
+int	parse_arguments(int ac, char **av, t_data *data);
 
 #endif

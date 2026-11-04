@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 13:59:44 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:47:46 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	init_meal(t_data *d)
 	long long	i;
 
 	i = -1;
-	while (++i < d->share.philo_cht)
+	while (++i < d->share.philo_cnt)
 	{
 		if (pthread_mutex_init(&d->philo[i].meal, NULL) != 0)
 		{

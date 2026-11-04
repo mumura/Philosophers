@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 16:13:32 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:43:22 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/04 17:53:12 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	start_philos(t_data *d)
 	while (++i < d->share.philo_cnt)
 		d->philo[i].last_meal = d->state.start_time;
 	pthread_mutex_unlock(&d->state.mx);
-	return (0);
 }
 
 int	run_simulation(t_data *d)
@@ -33,5 +32,5 @@ int	run_simulation(t_data *d)
 	if (sta != 0)
 		return (sta);
 	start_philos(d);
-	return (join_philo(d, d->share.philo_cht));
+	return (join_philo(d, d->share.philo_cnt));
 }
