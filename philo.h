@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:47:19 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 04:50:59 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_share	t_share;
 typedef struct s_state	t_state;
