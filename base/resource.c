@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 01:08:19 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:50:28 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:45:24 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	start_philo(t_data *d)
 	{init_state, clean_state},
 	{init_philos, free_philo},
 	{init_meal, clean_meal},
+	{init_queue, free_queue},
 	{NULL, NULL}
 	};
 

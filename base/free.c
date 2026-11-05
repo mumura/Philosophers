@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 21:45:06 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:58:21 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:44:44 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,20 @@ void	free_philo(t_data *d)
 {
 	free(d->philo);
 	d->philo = NULL;
+}
+
+void	free_queue(t_data *d)
+{
+	t_record	*node;
+	t_record	*next;
+
+	node = d->state.head;
+	while (node)
+	{
+		next = node->next;
+		free(node);
+		node = next;
+	}
+	d->state.head = NULL;
+	d->state.tail = NULL;
 }

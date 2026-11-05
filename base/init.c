@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:47:46 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:48:54 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,33 @@ int	init_philos(t_data *d)
 		(*ph)[i].state = &d->state;
 		(*ph)[i].left_fork = &d->forks[i];
 		(*ph)[i].right_fork = &d->forks[(i + 1) % size];
+	}
+	return (0);
+}
+
+int	init_queue(t_data *d)
+{
+	t_record	*node;
+	long long	i;
+
+	i = -1;
+	while (++i < d->share.philo_cnt)
+	{
+		node = mallco(sizeof(t_record));
+		if (!node)
+		{
+			free_queue(d);
+			return (1);
+		}
+		node->philo = &d->philo[i];
+		node->time = d->state.start_time;
+		node->version = 0;
+		node->next = NULL;
+		if (d->state.tail)
+			d->state.tail->next = node;
+		else
+			d->state.head = node;
+		d->state.tail = node;
 	}
 	return (0);
 }
