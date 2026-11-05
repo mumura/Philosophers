@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 13:48:54 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:53:49 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	init_queue(t_data *d)
 	i = -1;
 	while (++i < d->share.philo_cnt)
 	{
-		node = mallco(sizeof(t_record));
+		node = malloc(sizeof(t_record));
 		if (!node)
 		{
 			free_queue(d);

@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 07:25:59 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 13:46:16 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:59:07 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	push_meal(t_philo *p, long long time)
 	node->time = time;
 	node->version = p->version + 1;
 	node->next = NULL;
+	p->last_meal = time;
 	p->version = node->version;
 	if (s->tail)
 		s->tail->next = node;

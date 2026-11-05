@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 16:13:32 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:53:12 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:57:53 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 static void	start_philos(t_data *d)
 {
-	long long	i;
+	t_record	*node;
+	long long	start;
 
 	pthread_mutex_lock(&d->state.mx);
-	d->state.start_time = now_ms();
-	i = -1;
-	while (++i < d->share.philo_cnt)
-		d->philo[i].last_meal = d->state.start_time;
+	start = now_ms();
+	node = d->state.head;
+	while (node)
+	{
+		node->time = start;
+		node->philo->last_meal = start;
+		node = node->next;
+	}
+	d->state.start_time = start;
 	pthread_mutex_unlock(&d->state.mx);
 }
 

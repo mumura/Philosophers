@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 08:03:18 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:53:32 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_share	t_share;
 typedef struct s_state	t_state;
 typedef struct s_philo	t_philo;
 typedef struct s_data	t_data;
+typedef struct s_record	t_record;
 
 struct	s_share
 {
@@ -77,7 +78,7 @@ typedef struct s_record
 	long long		time;
 	long long		version;
 	struct s_record	*next;
-}	t_record;
+}; //	t_record;
 
 typedef struct s_resource
 {

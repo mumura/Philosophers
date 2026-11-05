@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 03:32:52 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 07:24:11 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 13:54:14 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ long long	now_ms(void)
 {
 	struct timeval	tv;
 
-	if (gettimeofdat(&tv, NULL) != 0)
+	if (gettimeofday(&tv, NULL) != 0)
 		return (-1);
-	return ((long long)tv.tvsec * 1000 + tv.tv_usec / 1000);
+	return ((long long)tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 long long	get_wait_time(long long remaining, long long next_deadline)
