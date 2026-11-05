@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 14:18:13 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 20:36:13 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-typedef struct s_share	t_share;
-typedef struct s_state	t_state;
-typedef struct s_philo	t_philo;
-typedef struct s_data	t_data;
-typedef struct s_record	t_record;
+typedef struct s_share		t_share;
+typedef struct s_state		t_state;
+typedef struct s_philo		t_philo;
+typedef struct s_data		t_data;
+typedef struct s_record		t_record;
+typedef struct s_fork_state	t_fork_state;
 
 struct	s_share
 {
@@ -47,6 +48,7 @@ struct	s_state
 	long long		full_count;
 	t_record		*head;
 	t_record		*tail;
+	t_fork_state	*fork_state;
 	pthread_mutex_t	mx;
 }; // t_state
 
@@ -73,13 +75,19 @@ struct s_data
 	pthread_mutex_t	*forks;
 }; //	t_data;
 
-typedef struct s_record
+struct s_record
 {
 	t_philo			*philo;
 	long long		time;
 	long long		version;
 	struct s_record	*next;
 }; //	t_record;
+
+struct s_fork_state
+{
+	long long	owner;
+	long long	eat_start;
+}; //	t_fork_state;
 
 typedef struct s_resource
 {
