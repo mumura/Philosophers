@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 13:53:32 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 14:18:13 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ struct	s_share
 
 struct	s_state
 {
-	long long	start_time;
-	long long	stop;// 1 실행중, 0 멈춤
-	t_record	*head;
-	t_record	*tail;
+	long long		start_time;
+	long long		stop;// 1 실행중, 0 멈춤
+	long long		full_count;
+	t_record		*head;
+	t_record		*tail;
 	pthread_mutex_t	mx;
 }; // t_state
 
