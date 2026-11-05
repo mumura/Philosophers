@@ -6,11 +6,22 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 13:59:59 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 21:26:52 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 22:04:51 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	mark_eating_locked(t_philo *p, long long now)
+{
+	long long	left;
+	long long	right;
+
+	left = p->id - 1;
+	right = p->id % p->share->philo_cnt;
+	p->state->fork_state[left].eat_start = now;
+	p->state->fork_state[right].eat_start = now;
+}
 
 int	record_meal_start(t_philo *p)
 {
@@ -54,15 +65,4 @@ void	finish_meal(t_philo *p)
 			s->full_count++;
 	}
 	pthread_mutex_unlock(&s->mx);
-}
-
-static void	mark_eating_locked(t_philo *p, long long now)
-{
-	long long	left;
-	long long	right;
-
-	left = p->id - 1;
-	right = p->id % p->share->philo_cnt;
-	p->state->fork_state[left].eat_start = now;
-	p->state->fork_state[right].eat_start = now;
 }

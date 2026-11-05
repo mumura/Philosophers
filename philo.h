@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 21:35:21 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 22:02:51 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+typedef struct s_record		t_record;
+typedef struct s_fork_state	t_fork_state;
+
 typedef struct s_share
 {
 	long long		philo_cnt;
@@ -33,6 +36,17 @@ typedef struct s_share
 	long long		time_to_eat;
 	long long		time_to_sleep;
 }	t_share;
+
+typedef struct s_state
+{
+	long long		start_time;
+	long long		stop;// 1 실행중, 0 멈춤
+	long long		full_count;
+	t_record		*head;
+	t_record		*tail;
+	t_fork_state	*fork_state;
+	pthread_mutex_t	mx;
+}	t_state;
 
 typedef struct s_philo
 {
@@ -49,32 +63,21 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 }	t_philo;
 
-typedef struct s_fork_state
+struct s_fork_state
 {
 	long long	owner;
 	long long	eat_start;
-}	t_fork_state;
+};
 
-typedef struct s_record
+struct s_record
 {
 	t_philo			*philo;
 	long long		time;
 	long long		version;
 	struct s_record	*next;
-}	t_record;
+};
 
-typedef struct s_state
-{
-	long long		start_time;
-	long long		stop;// 1 실행중, 0 멈춤
-	long long		full_count;
-	t_record		*head;
-	t_record		*tail;
-	t_fork_state	*fork_state;
-	pthread_mutex_t	mx;
-}	t_state;
-
-struct s_data
+typedef struct s_data
 {
 	t_share			share;
 	t_state			state;
