@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 13:59:59 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 21:12:45 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 21:26:52 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	record_meal_start(t_philo *p)
 	now = now_ms();
 	if (now < 0)
 		sta = 2;
-	else if (s->stop == 0) || (now - p->last_meal) >= (p->share->time_to_die))
+	else if ((s->stop == 0) || (now - p->last_meal) >= (p->share->time_to_die))
 		sta = 1;
 	else
 	{
@@ -55,7 +55,6 @@ void	finish_meal(t_philo *p)
 	}
 	pthread_mutex_unlock(&s->mx);
 }
-
 
 static void	mark_eating_locked(t_philo *p, long long now)
 {

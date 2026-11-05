@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 16:07:13 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 21:10:38 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 21:23:23 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ static int	wait_start(t_state *s)
 	}
 }
 
+static int	start_stagger(t_philo *p)
+{
+	if (p->id % 2 == 0 && p->share->time_to_die > 2)
+		return (wait_ms(p->state, 1));
+	return (0);
+}
+
 void	*philo_routine(void *arg)
 {
 	t_philo	*p;
@@ -61,11 +68,4 @@ void	*philo_routine(void *arg)
 			break ;
 	}
 	return (finish_philo(p));
-}
-
-static int	start_stagger(t_philo *p)
-{
-	if (p->id % 2 == 0 && p->share->time_to_die > 2)
-		return (wait_ms(p->state, 1));
-	return (0);
 }
