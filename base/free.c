@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 21:45:06 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 20:27:37 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 20:58:39 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,10 @@ void	free_queue(t_data *d)
 	}
 	d->state.head = NULL;
 	d->state.tail = NULL;
+}
+
+void	free_fork_state(t_data *d)
+{
+	free(d->state.fork_state);
+	d->state.fork_state = NULL;
 }

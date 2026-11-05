@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:09:31 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 13:53:49 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 20:58:22 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,28 @@ int	init_queue(t_data *d)
 			d->state.head = node;
 		d->state.tail = node;
 	}
+	return (0);
+}
+
+int	init_fork_state(t_data *d)
+{
+	t_fork_state	*fs;
+	long long	i;
+	long long	cnt;
+
+	cnt = d->share.philo_cnt;
+	if (cnt <= 0 || (unsigned long long)cnt
+		> MAX_SIZE / sizeof(t_fork_state))
+		return (1);
+	fs = malloc(sizeof(*fs) * cnt);
+	if (!fs)
+		return (1);
+	i = -1;
+	while (++i < cnt)
+	{
+		fs[i].owner = 0;
+		fs[i].eat_start = -1;
+	}
+	d->state.fork_state = fs;
 	return (0);
 }
