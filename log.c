@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 04:09:58 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 14:42:25 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:47:26 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ void	log_action(t_philo *p, const char *action)
 	pthread_mutex_lock(&s->mx);
 	if (s->stop == 1)
 		log_locked(p, action, now_ms());
-	pthread_mutex_unlock(&s->mx);
 	pthread_mutex_unlock(&s->mx);
 }

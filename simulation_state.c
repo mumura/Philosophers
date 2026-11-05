@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 03:33:54 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 14:26:09 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:48:19 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	check_all_full(t_data *d)
 		return (0);
 	pthread_mutex_lock(&d->state.mx);
 	full = (d->state.full_count == d->share.philo_cnt);
-	pthread_mutext_unlock(&d->state.mx);
+	pthread_mutex_unlock(&d->state.mx);
 	return (full);
 }

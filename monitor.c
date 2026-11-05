@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 14:43:19 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 17:17:25 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:47:54 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_death(t_data *d)
 	{
 		s->stop = 0;
 		if (now >= 0)
-			log_death_locked(nd->philo, "died", now);
+			log_locked(nd->philo, "died", now);
 	}
 	pthread_mutex_unlock(&s->mx);
 	return (dead);
@@ -45,7 +45,7 @@ int	monitor_philos(t_data *d)
 
 	while (!is_stopped(&d->state))
 	{
-		if (check_all_full(d)
+		if (check_all_full(d))
 		{
 			stop_simulation(&d->state);
 			return (0);

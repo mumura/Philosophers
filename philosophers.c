@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 16:13:32 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 17:18:40 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:49:02 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	run_simulation(t_data *d)
 		return (sta);
 	start_philos(d);
 	sta = monitor_philos(d);
-	join_sta = join_philo(d, d->share.philo_cht);
+	join_sta = join_philo(d, d->share.philo_cnt);
 	if (join_sta != 0)
 		return (join_sta);
 	return (sta);
