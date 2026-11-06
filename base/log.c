@@ -30,6 +30,7 @@ static size_t	append_text(char *buf, size_t pos, const char *text)
 	return (pos);
 }
 
+/* Caller holds state.print; start_time is immutable after startup. */
 void	log_locked(t_philo *p, const char *action, long long now)
 {
 	t_state	*s;
@@ -48,11 +49,17 @@ void	log_locked(t_philo *p, const char *action, long long now)
 
 void	log_action(t_philo *p, const char *action)
 {
-	t_state	*s;
+	t_state		*s;
+	long long	now;
+	int			running;
 
 	s = p->state;
+	pthread_mutex_lock(&s->print);
 	pthread_mutex_lock(&s->mx);
-	if (s->stop == 1)
-		log_locked(p, action, now_ms());
+	now = now_ms();
+	running = (s->stop == 1);
 	pthread_mutex_unlock(&s->mx);
+	if (running)
+		log_locked(p, action, now);
+	pthread_mutex_unlock(&s->print);
 }

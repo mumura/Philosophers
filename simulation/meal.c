@@ -23,7 +23,7 @@ static void	mark_eating_locked(t_philo *p, long long now)
 	p->state->fork_state[right].eat_start = now;
 }
 
-int	record_meal_start(t_philo *p)
+int	record_meal_start(t_philo *p, long long *end)
 {
 	int			sta;
 	t_state		*s;
@@ -32,17 +32,17 @@ int	record_meal_start(t_philo *p)
 	s = p->state;
 	pthread_mutex_lock(&s->mx);
 	now = now_ms();
-	if (now < 0)
+	if (now < 0 || p->share->time_to_eat > MAX_LLONG - now)
 		sta = 2;
 	else if ((s->stop == 0) || (now - p->last_meal) >= (p->share->time_to_die))
 		sta = 1;
 	else
 	{
-		sta = push_meal(p, now);
-		if (sta == 0)
-			mark_eating_locked(p, now);
-		else
-			sta = 2;
+		p->action = ACTION_EATING;
+		update_meal_locked(p, now);
+		mark_eating_locked(p, now);
+		*end = now + p->share->time_to_eat;
+		sta = 0;
 	}
 	pthread_mutex_unlock(&s->mx);
 	return (sta);

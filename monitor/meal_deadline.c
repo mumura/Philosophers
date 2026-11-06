@@ -1,54 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.c                                            :+:      :+:    :+:   */
+/*   meal_deadline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/05 07:25:59 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 13:59:07 by jinsekan         ###   ########.fr       */
+/*   Created: 2026/11/06 00:00:00 by jinsekan          #+#    #+#             */
+/*   Updated: 2026/11/06 00:00:00 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	push_meal(t_philo *p, long long time)
+/* Caller holds state.mx; p belongs to the contiguous philosopher array. */
+void	update_meal_locked(t_philo *p, long long time)
 {
-	t_record	*node;
-	t_state		*s;
+	t_philo		*all;
+	t_philo		*oldest;
+	long long	i;
 
-	s = p->state;
-	node = malloc(sizeof(t_record));
-	if (!node)
-		return (1);
-	node->philo = p;
-	node->time = time;
-	node->version = p->version + 1;
-	node->next = NULL;
 	p->last_meal = time;
-	p->version = node->version;
-	if (s->tail)
-		s->tail->next = node;
-	else
-		s->head = node;
-	s->tail = node;
-	return (0);
-}
-
-void	pop_stale(t_state *s)
-{
-	t_record	*old;
-
-	while (s->head)
+	if (p->state->oldest != p)
+		return ;
+	all = p - (p->id - 1);
+	oldest = &all[0];
+	i = 0;
+	while (++i < p->share->philo_cnt)
 	{
-		if (s->head->version == s->head->philo->version)
-			break ;
-		old = s->head;
-		s->head = old->next;
-		free(old);
+		if (all[i].last_meal < oldest->last_meal)
+			oldest = &all[i];
 	}
-	if (!s->head)
-		s->tail = NULL;
+	p->state->oldest = oldest;
 }
 
 long long	get_next_deadline(t_state *s, long long time_to_die)
@@ -56,10 +38,9 @@ long long	get_next_deadline(t_state *s, long long time_to_die)
 	long long	deadline;
 
 	pthread_mutex_lock(&s->mx);
-	pop_stale(s);
 	deadline = -1;
-	if (s->head)
-		deadline = s->head->time + time_to_die;
+	if (s->oldest)
+		deadline = s->oldest->last_meal + time_to_die;
 	pthread_mutex_unlock(&s->mx);
 	return (deadline);
 }

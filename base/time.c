@@ -38,28 +38,3 @@ long long	get_wait_time(long long remaining, long long next_deadline)
 		return (1 * 1000);
 	return (wait * 1000);
 }
-
-int	wait_ms(t_state *s, long long duration)
-{
-	long long	end;
-	long long	now;
-	long long	wait;
-
-	now = now_ms();
-	if (now < 0)
-		return (1);
-	end = now + duration;
-	while (!is_stopped(s))
-	{
-		now = now_ms();
-		if (now < 0)
-			return (1);
-		if (now >= end)
-			return (0);
-		wait = get_wait_time(end - now, 0);
-		if (wait <= 0)
-			return (1);
-		usleep((useconds_t)wait);
-	}
-	return (1);
-}

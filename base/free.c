@@ -32,22 +32,7 @@ void	free_meal(t_philo *ph, long long len)
 
 void	free_philo(t_data *d)
 {
+	d->state.oldest = NULL;
 	free(d->philo);
 	d->philo = NULL;
-}
-
-void	free_queue(t_data *d)
-{
-	t_record	*node;
-	t_record	*next;
-
-	node = d->state.head;
-	while (node)
-	{
-		next = node->next;
-		free(node);
-		node = next;
-	}
-	d->state.head = NULL;
-	d->state.tail = NULL;
 }

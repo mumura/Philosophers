@@ -17,9 +17,9 @@ int	start_philo(t_data *d)
 	static const t_resource	resources[] = {
 	{init_forks, clean_forks},
 	{init_state, clean_state},
+	{init_print, clean_print},
 	{init_philos, free_philo},
 	{init_meal, clean_meal},
-	{init_queue, free_queue},
 	{init_fork_state, free_fork_state},
 	{NULL, NULL}
 	};

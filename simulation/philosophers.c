@@ -14,18 +14,15 @@
 
 static void	start_philos(t_data *d)
 {
-	t_record	*node;
+	long long	i;
 	long long	start;
 
 	pthread_mutex_lock(&d->state.mx);
 	start = now_ms();
-	node = d->state.head;
-	while (node)
-	{
-		node->time = start;
-		node->philo->last_meal = start;
-		node = node->next;
-	}
+	i = -1;
+	while (++i < d->share.philo_cnt)
+		d->philo[i].last_meal = start;
+	d->state.oldest = &d->philo[0];
 	d->state.start_time = start;
 	pthread_mutex_unlock(&d->state.mx);
 }

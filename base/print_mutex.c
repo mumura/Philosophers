@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   print_mutex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jinsekan <jinsekan@student.42gyeongsa      +#+  +:+       +#+        */
+/*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 03:10:33 by jinsekan          #+#    #+#             */
-/*   Updated: 2025/10/23 03:10:37 by jinsekan         ###   ########.fr       */
+/*   Created: 2026/11/06 00:00:00 by jinsekan          #+#    #+#             */
+/*   Updated: 2026/11/06 00:00:00 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-int	ft_isascii(int c)
+int	init_print(t_data *d)
 {
-	if (c >= 0 && c <= 127)
-	{
+	if (pthread_mutex_init(&d->state.print, NULL) != 0)
 		return (1);
-	}
 	return (0);
+}
+
+void	clean_print(t_data *d)
+{
+	pthread_mutex_destroy(&d->state.print);
 }

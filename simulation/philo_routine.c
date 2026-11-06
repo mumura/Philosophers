@@ -19,6 +19,7 @@ static void	*finish_philo(t_philo *p)
 	s = p->state;
 	pthread_mutex_lock(&s->mx);
 	p->released = 1;
+	p->action = 0;
 	pthread_mutex_unlock(&s->mx);
 	return (NULL);
 }
@@ -57,6 +58,8 @@ void	*philo_routine(void *arg)
 	if (wait_start(p->state))
 		return (finish_philo(p));
 	if (start_stagger(p))
+		return (finish_philo(p));
+	if (manager_thinking(p, 1))
 		return (finish_philo(p));
 	while (!is_stopped(p->state))
 	{

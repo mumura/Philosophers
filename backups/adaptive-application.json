@@ -1,0 +1,13 @@
+{
+  "backup": "/home/jinsekan/42/\ud544\ub85c\uc18c\ud37c\ub0b4\uaebc/backups/before_adaptive_1793956439957543103.tar.gz",
+  "applied_files": [
+    "Makefile",
+    "philo.h",
+    "simulation/philo_actions.c",
+    "simulation/philo_routine.c",
+    "simulation/manager_model.c",
+    "simulation/manager_plan.c"
+  ],
+  "reference_binary_sha256": "eb531a343f1a74f8906772ff2595c8d34adb4662720c33f000fa3bdb90a96199",
+  "validation_dir": "/tmp/philo-applied-adaptive-roq0k8th"
+}

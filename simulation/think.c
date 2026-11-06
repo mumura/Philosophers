@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 21:07:05 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 21:07:56 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/05 23:00:53 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static long long	fork_delay(t_fork_state *f,
 
 static long long	max_delay(long long left, long long right)
 {
-	if (left < 0 || right < 0)
-		return (1);
+	if (left < 0)
+		left = 1;
+	if (right < 0)
+		right = 1;
 	if (left > right)
 		return (left);
 	return (right);
