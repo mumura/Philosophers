@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:02:48 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/05 22:25:28 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/07 04:09:02 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdint.h>
 # include <sys/time.h>
 # include <unistd.h>
-# include "libft.h"
 
 # define ACTION_WAITING 1
 # define ACTION_EATING 2
@@ -46,7 +45,7 @@ typedef struct s_share
 typedef struct s_state
 {
 	long long		start_time;
-	long long		stop;// 1 실행중, 0 멈춤
+	long long		stop;
 	long long		full_count;
 	t_philo			*oldest;
 	t_fork_state	*fork_state;
@@ -83,6 +82,16 @@ typedef struct s_data
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
 }	t_data;
+
+typedef struct s_plan
+{
+	long long	blocked[4][2];
+	long long	candidates[11];
+	long long	target;
+	long long	latest;
+	int			count;
+	int			len;
+}	t_plan;
 
 typedef struct s_resource
 {
@@ -122,6 +131,7 @@ int			wait_until(t_state *s, long long end);
 int			wait_ms(t_state *s, long long duration);
 
 int			parse_arguments(int ac, char **av, t_data *data);
+void		ft_bzero(void *s, size_t n);
 
 int			check_death(t_data *d);
 int			monitor_philos(t_data *d);
@@ -154,12 +164,14 @@ int			check_all_full(t_data *d);
 long long	get_think_delay(t_philo *p);
 
 void		set_action(t_philo *p, int action);
-int		wait_think(t_philo *p, long long delay);
-int		yield_think(t_philo *p);
+int			wait_think(t_philo *p, long long delay);
+int			yield_think(t_philo *p);
 
-long long manager_period(t_philo *p);
-long long manager_seed(t_philo *p, long long period);
-int manager_intervals(t_philo *p, long long period, long long now, long long blocked[4][2]);
-int manager_thinking(t_philo *p, int initial);
+long long	manager_period(t_philo *p);
+long long	manager_seed(t_philo *p, long long period);
+int			manager_intervals(t_philo *p, long long period,
+				long long now, long long blocked[4][2]);
+long long	manager_select_start(t_philo *p, long long period, long long now);
+int			manager_thinking(t_philo *p, int initial);
 
 #endif

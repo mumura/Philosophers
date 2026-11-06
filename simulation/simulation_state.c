@@ -17,7 +17,7 @@ int	is_stopped(t_state *s)
 	int	stopped;
 
 	pthread_mutex_lock(&s->mx);
-	stopped = (s->stop == 0);  // 참이면(실행중) 1, 거짓이면(멈춤) 0
+	stopped = (s->stop == 0);
 	pthread_mutex_unlock(&s->mx);
 	return (stopped);
 }

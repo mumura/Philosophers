@@ -6,7 +6,7 @@
 /*   By: jinsekan <jinsekan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 17:40:18 by jinsekan          #+#    #+#             */
-/*   Updated: 2026/11/04 17:17:09 by jinsekan         ###   ########.fr       */
+/*   Updated: 2026/11/06 18:26:35 by jinsekan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,12 @@ int	parse_arguments(int ac, char **av, t_data *data)
 		i++;
 	}
 	return (input_data(data, values));
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	while (n--)
+	{
+		*(unsigned char *)s++ = 0;
+	}
 }

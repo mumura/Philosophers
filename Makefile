@@ -1,10 +1,7 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -I. -ILibft
+CFLAGS = -Wall -Wextra -Werror -pthread -I.
 RM = rm -f
-
-LIBFT_DIR = Libft
-LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = main.c \
 	base/cleanup.c \
@@ -30,28 +27,24 @@ SRCS = main.c \
 	simulation/thinking_control.c \
 	simulation/manager_model.c \
 	simulation/manager_plan.c \
+	simulation/manager_select.c \
 	simulation/think.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 %.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
